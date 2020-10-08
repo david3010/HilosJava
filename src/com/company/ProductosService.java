@@ -46,54 +46,50 @@ public class ProductosService {
         return productos;
     }
 
-    public void ejecutar() {
+    public void ejecutar(double precioMin, double precioMax) {
         ProductosService p = new ProductosService();
         List<Producto> productos = p.getProductos();
-        List<Producto> encontrados = new ArrayList<Producto>();
+        List<Producto> encontrados = new ArrayList<>();
 
-        List<Producto> ELECTRONICA = p.getProductos()
+        List<Producto> ELECTRONICA = productos
                 .stream().filter(producto ->
                         producto.getCategoria() == CategoriaProducto.ELECTRONICA.getTipo()).collect(
                         Collectors.toList());
 
-        List<Producto> MODA_BELLEZA = p.getProductos()
+        List<Producto> MODA_BELLEZA = productos
                 .stream().filter(producto ->
                         producto.getCategoria() == CategoriaProducto.MODA_BELLEZA.getTipo()).collect(
                         Collectors.toList());
 
-        List<Producto> DEPORTES = p.getProductos()
+        List<Producto> DEPORTES = productos
                 .stream().filter(producto ->
                         producto.getCategoria() == CategoriaProducto.DEPORTES.getTipo()).collect(
                         Collectors.toList());
 
-        List<Producto> ELECTRODOMESTICOS = p.getProductos()
+        List<Producto> ELECTRODOMESTICOS = productos
                 .stream().filter(producto ->
                         producto.getCategoria() == CategoriaProducto.ELECTRODOMESTICOS.getTipo()).collect(
                         Collectors.toList());
 
-        List<Producto> VIDEOJUEGOS = p.getProductos()
+        List<Producto> VIDEOJUEGOS = productos
                 .stream().filter(producto ->
                         producto.getCategoria() == CategoriaProducto.VIDEOJUEGOS.getTipo()).collect(
                         Collectors.toList());
 
-        Busqueda r5 = new Busqueda(300.00f, 1500f, ELECTRONICA);
-        Busqueda r1 = new Busqueda(300.00f, 1500f, MODA_BELLEZA);
-        Busqueda r2 = new Busqueda(300.00f, 1500f, DEPORTES);
-        Busqueda r3 = new Busqueda(300.00f, 1500f, ELECTRODOMESTICOS);
-        Busqueda r4 = new Busqueda(300.00f, 1500f, VIDEOJUEGOS);
+        Busqueda r5 = new Busqueda(precioMin, precioMax, ELECTRONICA);
+        Busqueda r1 = new Busqueda(precioMin, precioMax, MODA_BELLEZA);
+        Busqueda r2 = new Busqueda(precioMin, precioMax, DEPORTES);
+        Busqueda r3 = new Busqueda(precioMin, precioMax, ELECTRODOMESTICOS);
+        Busqueda r4 = new Busqueda(precioMin, precioMax, VIDEOJUEGOS);
         long inicio = System.currentTimeMillis();
         Thread t1 = new Thread(r1);
         t1.start();
-        System.out.println("Ejecucion de hilo 1");
         Thread t2 = new Thread(r2);
         t2.start();
-        System.out.println("Ejecucion de hilo 2");
         Thread t3 = new Thread(r3);
         t3.start();
-        System.out.println("Ejecucion de hilo 3");
         Thread t4 = new Thread(r4);
         t4.start();
-        System.out.println("Ejecucion de hilo 4");
         Thread t5 = new Thread(r5);
         t5.start();
 

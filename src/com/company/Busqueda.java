@@ -12,7 +12,7 @@ public class Busqueda implements Runnable {
     double precioMin;
     double precioMax;
 
-    public Busqueda(float precioMin, float precioMax, List<Producto> productos) {
+    public Busqueda(double precioMin, double precioMax, List<Producto> productos) {
         super();
         this.productos = productos;
         this.precioMin = precioMin;

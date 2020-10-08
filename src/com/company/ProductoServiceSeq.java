@@ -5,10 +5,10 @@ import java.util.List;
 
 public class ProductoServiceSeq {
 
-    public void ejecutar() {
+    public void ejecutar(double precioMin, double precioMax) {
+
         long inicio = System.currentTimeMillis();
-        double precioMin = 300D;
-        double precioMax = 1500D;
+
         ProductosService ps = new ProductosService();
         List<Producto> productos = ps.getProductos();
         List<Producto> encontrados = new ArrayList<>();
